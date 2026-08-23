@@ -3,7 +3,7 @@ let currentUser = "";
 
 /* SESSION (localStorage-backed, since each portal is now a real page) */
 
-const SESSION_KEY = "uniportal_session";
+const SESSION_KEY = "UniBook_session";
 
 function saveSession(username, role) {
     localStorage.setItem(SESSION_KEY, JSON.stringify({ username, role }));
