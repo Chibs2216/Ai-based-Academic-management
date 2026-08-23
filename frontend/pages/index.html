@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>University Learning Portal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style/tokens.css">
+    <link rel="stylesheet" href="../style/base.css">
+    <link rel="stylesheet" href="../style/layout.css">
+    <link rel="stylesheet" href="../style/components.css">
+    <link rel="stylesheet" href="../style/pages.css">
+    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/admin.css">
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="visually-hidden" aria-hidden="true">
+    <defs>
+
+        <symbol id="icon-logo" viewBox="0 0 24 24">
+            <path d="M12 3L2 8L12 13L22 8L12 3Z"></path>
+            <path d="M6 10.5V15.5C6 15.5 8 18 12 18C16 18 18 15.5 18 15.5V10.5"></path>
+        </symbol>
+
+    </defs>
+</svg>
+
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <div class="brand-mark">
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
+        </div>
+
+        <h1>University Portal</h1>
+        <p class="subtitle">Student • Teacher • Admin</p>
+
+        <div class="field-group">
+            <label for="username">Username</label>
+            <input class="field" type="text" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="field-group">
+            <label for="password">Password</label>
+            <input class="field" type="password" id="password" placeholder="Enter your password">
+        </div>
+
+        <div class="field-group">
+            <label for="role">Role</label>
+            <select class="field" id="role">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary btn-block" data-action="login">Login</button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+</div>
+
+
+<script src="../js/shared.js"></script>
+<script src="../js/login.js"></script>
+
+</body>
+</html>

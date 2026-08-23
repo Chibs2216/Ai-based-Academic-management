@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teacher Portal — UniPortal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style/tokens.css">
+    <link rel="stylesheet" href="../style/base.css">
+    <link rel="stylesheet" href="../style/layout.css">
+    <link rel="stylesheet" href="../style/components.css">
+    <link rel="stylesheet" href="../style/pages.css">
+    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/admin.css">
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="visually-hidden" aria-hidden="true">
+    <defs>
+
+        <symbol id="icon-logo" viewBox="0 0 24 24">
+            <path d="M12 3L2 8L12 13L22 8L12 3Z"></path>
+            <path d="M6 10.5V15.5C6 15.5 8 18 12 18C16 18 18 15.5 18 15.5V10.5"></path>
+        </symbol>
+
+        <symbol id="icon-dashboard" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+        </symbol>
+
+        <symbol id="icon-courses" viewBox="0 0 24 24">
+            <path d="M4 5.5C4 4.67 4.67 4 5.5 4H11.5V20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"></path>
+            <path d="M20 5.5C20 4.67 19.33 4 18.5 4H12.5V20H18.5C19.33 20 20 19.33 20 18.5V5.5Z"></path>
+        </symbol>
+
+        <symbol id="icon-progress" viewBox="0 0 24 24">
+            <polyline points="3 17 9 11 13 15 21 6"></polyline>
+            <polyline points="21 12 21 6 15 6"></polyline>
+        </symbol>
+
+        <symbol id="icon-notifications" viewBox="0 0 24 24">
+            <path d="M6 10C6 6.13 8.69 3 12 3C15.31 3 18 6.13 18 10V15L20 18H4L6 15V10Z"></path>
+            <path d="M9.5 20C9.5 21.1 10.62 22 12 22C13.38 22 14.5 21.1 14.5 20"></path>
+        </symbol>
+
+        <symbol id="icon-logout" viewBox="0 0 24 24">
+            <path d="M9 21H5C4.45 21 4 20.55 4 20V4C4 3.45 4.45 3 5 3H9"></path>
+            <path d="M16 17L21 12L16 7"></path>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+        </symbol>
+
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </symbol>
+
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <polyline points="5 12 10 17 19 8"></polyline>
+        </symbol>
+
+        <symbol id="icon-megaphone" viewBox="0 0 24 24">
+            <path d="M3 10V14C3 14.55 3.45 15 4 15H6L13 19V5L6 9H4C3.45 9 3 9.45 3 10Z"></path>
+            <path d="M17 8C18.1 9.2 18.1 12.8 17 14"></path>
+        </symbol>
+
+        <symbol id="icon-clipboard" viewBox="0 0 24 24">
+            <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+            <path d="M9 4V3C9 2.45 9.45 2 10 2H14C14.55 2 15 2.45 15 3V4"></path>
+            <line x1="9" y1="10.5" x2="15" y2="10.5"></line>
+            <line x1="9" y1="14.5" x2="15" y2="14.5"></line>
+        </symbol>
+
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <polyline points="14 6 20 12 14 18"></polyline>
+        </symbol>
+
+        <symbol id="icon-pulse" viewBox="0 0 24 24">
+            <polyline points="3 12 8 12 10 6 14 18 16 12 21 12"></polyline>
+        </symbol>
+
+        <symbol id="icon-upload" viewBox="0 0 24 24">
+            <path d="M7 18C4.79 18 3 16.21 3 14C3 12.03 4.4 10.39 6.26 10.06C6.62 7.24 9.05 5 12 5C14.95 5 17.38 7.24 17.74 10.06C19.6 10.39 21 12.03 21 14C21 16.21 19.21 18 17 18H7Z"></path>
+            <path d="M12 12V19"></path>
+            <polyline points="9 15 12 12 15 15"></polyline>
+        </symbol>
+
+        <symbol id="icon-edit" viewBox="0 0 24 24">
+            <path d="M12 20H21"></path>
+            <path d="M16.5 3.5C17.33 2.67 18.67 2.67 19.5 3.5C20.33 4.33 20.33 5.67 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z"></path>
+        </symbol>
+
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <circle cx="9" cy="8" r="3.5"></circle>
+            <path d="M2.5 20C2.5 16.5 5.5 14 9 14C12.5 14 15.5 16.5 15.5 20"></path>
+            <circle cx="17" cy="9" r="2.8"></circle>
+            <path d="M14.7 20C14.9 17.2 16.7 15.2 19 15.2C21 15.2 21.5 16.8 21.5 18.2"></path>
+        </symbol>
+
+    </defs>
+</svg>
+
+
+<!-- TEACHER PORTAL -->
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
+            UniPortal
+        </div>
+
+        <nav class="nav">
+
+            <button class="nav-item" data-page="dashboard" data-title="Dashboard">
+                <svg class="icon" aria-hidden="true"><use href="#icon-dashboard"></use></svg>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" data-page="courses" data-title="Courses">
+                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                <span>Courses</span>
+            </button>
+
+            <button class="nav-item" data-page="grading" data-title="Grading">
+                <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
+                <span>Grading</span>
+            </button>
+
+            <button class="nav-item" data-page="analytics" data-title="Class Analytics">
+                <svg class="icon" aria-hidden="true"><use href="#icon-progress"></use></svg>
+                <span>Class Analytics</span>
+            </button>
+
+            <button class="nav-item" data-page="announcements" data-title="Announcements">
+                <svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
+                <span>Announcements</span>
+            </button>
+
+            <button class="nav-item" data-page="notifications" data-title="Notifications">
+                <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                <span>Notifications</span>
+                <span class="nav-badge hidden"></span>
+            </button>
+
+            <button class="nav-item" data-page="settings" data-title="Settings">
+                <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+        <button class="nav-item logout" data-action="logout">
+            <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
+            <span>Logout</span>
+        </button>
+
+    </aside>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <!-- HEADER -->
+        <header>
+
+            <div>
+                <h2 class="page-title">Dashboard</h2>
+                <p class="welcome-text">
+                    Welcome to your university portal.
+                </p>
+            </div>
+
+            <div class="profile">
+                <span class="avatar user-avatar">T</span>
+                <span class="user-role">Teacher</span>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="page" data-page="dashboard">
+
+            <div class="cards">
+
+                <div class="card card--purple">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Classes</h3>
+                        <strong>2</strong>
+                        <p>Active classes</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                </div>
+
+                <div class="card card--blue">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Students</h3>
+                        <strong>60</strong>
+                        <p>Across all classes</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-users"></use></svg>
+                </div>
+
+                <div class="card card--green">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Pending Grading</h3>
+                        <strong>12</strong>
+                        <p>Awaiting review</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
+                </div>
+
+                <div class="card card--orange">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Announcements</h3>
+                        <strong>5</strong>
+                        <p>Sent this term</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-pulse"></use></svg>
+                            Pending Submissions
+                        </h3>
+                        <button class="btn btn-ghost btn-sm" data-action="switchToGradingPage">
+                            View grading queue
+                            <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                        </button>
+                    </div>
+
+                    <div class="teacher-dashboard-submissions"></div>
+
+                </div>
+
+
+                <div class="dashboard-side">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+                            <h3 class="panel-title">Your Classes</h3>
+                        </div>
+
+                        <div class="deadline-item">
+                            <span class="deadline-icon deadline-icon--purple">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                            </span>
+                            <div class="deadline-body">
+                                <div class="title">Web Engineering</div>
+                                <div class="meta">32 students</div>
+                            </div>
+                            <span class="tag tag--purple">Avg A-</span>
+                        </div>
+
+                        <div class="deadline-item">
+                            <span class="deadline-icon deadline-icon--green">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                            </span>
+                            <div class="deadline-body">
+                                <div class="title">Database Management</div>
+                                <div class="meta">28 students</div>
+                            </div>
+                            <span class="tag tag--green">Avg B+</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COURSES / COURSE BUILDER -->
+        <section class="page hidden" data-page="courses">
+
+            <div class="panel">
+
+                <h3>My Classes</h3>
+
+                <div class="list-row-wrapper">
+                    <button class="list-row-main" data-action="editCourse" data-course-id="web-eng">
+                        <div class="title">Web Engineering</div>
+                        <div class="meta">Fall 2026 • 32 students</div>
+                    </button>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
+                </div>
+
+                <div class="list-row-wrapper">
+                    <button class="list-row-main" data-action="editCourse" data-course-id="db-mgmt">
+                        <div class="title">Database Management</div>
+                        <div class="meta">Fall 2026 • 28 students</div>
+                    </button>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
+                </div>
+
+            </div>
+
+            <div class="panel course-builder-form hidden">
+
+                <h3>Edit Course</h3>
+
+                <div class="field-group">
+                    <label for="courseTitle">Course title</label>
+                    <input class="field" id="courseTitle" name="courseTitle">
+                </div>
+
+                <div class="field-group">
+                    <label for="courseTerm">Term</label>
+                    <input class="field" id="courseTerm" name="courseTerm">
+                </div>
+
+                <div class="field-group">
+                    <label for="courseDescription">Description</label>
+                    <textarea class="field" id="courseDescription" name="courseDescription"></textarea>
+                </div>
+
+                <h3>Materials Upload</h3>
+
+                <div class="dropzone">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-upload"></use></svg>
+                    <p>Drag and drop files here, or click to browse</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GRADING -->
+        <section class="page hidden" data-page="grading">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Grading Queue</h3>
+                    <button class="btn btn-ghost btn-sm" data-action="bulkReturn">Bulk Return</button>
+                </div>
+
+                <div class="grading-queue"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GRADING DETAIL -->
+        <section class="page hidden" data-page="grading-detail">
+
+            <button class="back-link" data-action="backToGrading">
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                Back to Grading Queue
+            </button>
+
+            <div class="panel grading-detail-content"></div>
+
+        </section>
+
+
+        <!-- CLASS ANALYTICS -->
+        <section class="page hidden" data-page="analytics">
+
+            <div class="panel">
+
+                <h3>Class Analytics</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Avg. Grade</th>
+                            <th>Submission Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Web Engineering</td>
+                            <td>A-</td>
+                            <td>94%</td>
+                        </tr>
+                        <tr>
+                            <td>Database Management</td>
+                            <td>B+</td>
+                            <td>88%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANNOUNCEMENTS -->
+        <section class="page hidden" data-page="announcements">
+
+            <div class="panel">
+
+                <h3>New Announcement</h3>
+
+                <div class="field-group">
+                    <label for="announcementTitle">Title</label>
+                    <input class="field" id="announcementTitle" placeholder="e.g. Midterm schedule change">
+                </div>
+
+                <div class="field-group">
+                    <label for="announcementBody">Message</label>
+                    <textarea class="field" id="announcementBody" placeholder="Write your announcement..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="announcementAudience">Audience</label>
+                    <select class="field" id="announcementAudience">
+                        <option>Web Engineering</option>
+                        <option>Database Management</option>
+                        <option>All Classes</option>
+                    </select>
+                </div>
+
+                <label class="toggle" style="margin-bottom: var(--space-4);">
+                    <input type="checkbox" id="announcementEmail" checked>
+                    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    <span style="margin-left: var(--space-2); font-size: 14px;">Also send by email</span>
+                </label>
+
+                <button class="btn btn-primary" data-action="sendAnnouncement">Send Announcement</button>
+
+            </div>
+
+            <div class="panel">
+                <h3>Previously Sent</h3>
+                <div class="announcements-sent"></div>
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATIONS -->
+        <section class="page hidden" data-page="notifications">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3 class="panel-title">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                        Notifications
+                    </h3>
+                    <button class="btn btn-ghost btn-sm" data-action="markAllNotificationsRead">Mark all as read</button>
+                </div>
+
+                <div class="notifications-list"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+        <section class="page hidden" data-page="settings">
+
+            <div class="panel">
+
+                <h3>Profile</h3>
+
+                <div class="field-group">
+                    <label for="teacherSettingsName">Full name</label>
+                    <input class="field" id="teacherSettingsName" placeholder="Your name">
+                </div>
+
+                <div class="field-group">
+                    <label for="teacherSettingsEmail">Email</label>
+                    <input class="field" type="email" id="teacherSettingsEmail" placeholder="you@university.edu">
+                </div>
+
+                <button class="btn btn-primary" data-action="saveSettings">Save changes</button>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>Notification Preferences</h3>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-title">Submissions</div>
+                        <div class="settings-row-desc">Email me when a student submits an assignment</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-title">System</div>
+                        <div class="settings-row-desc">Email me about system-wide updates</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOASTS -->
+<div class="toast-container" id="toastContainer"></div>
+
+
+<script src="../js/shared.js"></script>
+<script src="../js/teacher.js"></script>
+
+</body>
+</html>

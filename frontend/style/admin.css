@@ -1,0 +1,154 @@
+/* NAV BADGE */
+
+.nav-badge {
+    margin-left: auto;
+    background: var(--color-danger);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+    min-width: 18px;
+    text-align: center;
+}
+
+
+/* FILTER ROW (admin search, hostel browse) */
+
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.filter-row .field {
+    flex: 1;
+    min-width: 160px;
+    margin-bottom: 0;
+}
+
+.filter-row .btn {
+    flex-shrink: 0;
+}
+
+
+/* NOTIFICATION CENTER */
+
+.notification-group {
+    margin-bottom: var(--space-4);
+}
+
+.notification-group:last-child {
+    margin-bottom: 0;
+}
+
+.notification-group h4 {
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    text-align: left;
+}
+
+.notification-item:hover {
+    background: var(--color-bg);
+}
+
+.notification-item .icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+}
+
+.notification-item-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-item-body .title {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.notification-item.unread .title {
+    font-weight: 600;
+}
+
+.notification-item-body .meta {
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+.unread-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+}
+
+
+/* HOSTEL FINDER */
+
+.hostel-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.hostel-card:last-child {
+    margin-bottom: 0;
+}
+
+.hostel-card-main {
+    flex: 1;
+    min-width: 180px;
+}
+
+.hostel-card-main .title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.hostel-card-main .meta {
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+.hostel-card-contact {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    color: var(--color-accent-text);
+}
+
+.hostel-card-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+
+/* CATALOG FORM */
+
+.catalog-form-title {
+    margin-bottom: var(--space-4);
+}

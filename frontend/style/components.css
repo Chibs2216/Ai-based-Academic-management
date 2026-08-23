@@ -1,0 +1,256 @@
+/* ICON */
+
+.icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-sm {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-hover);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+}
+
+.btn-ghost:hover {
+    background: var(--color-bg);
+    border-color: var(--color-text-muted);
+}
+
+
+/* NAV ITEMS (sidebar) */
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+
+    width: 100%;
+    padding: var(--space-3) var(--space-3);
+    border-left: 2px solid transparent;
+    border-radius: var(--radius-sm);
+
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    color: var(--sidebar-text);
+}
+
+.nav-item:hover {
+    background: var(--sidebar-bg-hover);
+    color: var(--sidebar-text-active);
+}
+
+.nav-item.active {
+    background: rgba(91, 92, 240, 0.16);
+    border-left-color: var(--color-accent);
+    color: var(--sidebar-text-active);
+}
+
+.nav-item.logout {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--sidebar-border);
+    border-radius: 0;
+    color: #f2a4a4;
+}
+
+.nav-item.logout:hover {
+    background: transparent;
+    color: #f87171;
+}
+
+
+/* FORM FIELDS */
+
+.field-group {
+    text-align: left;
+    margin-bottom: var(--space-4);
+}
+
+.field-group label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.field {
+    width: 100%;
+    padding: 11px var(--space-3);
+
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+
+    font-size: 14.5px;
+    color: var(--color-text);
+    background: var(--color-surface);
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+textarea.field {
+    min-height: 200px;
+    resize: vertical;
+}
+
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    background: var(--color-surface);
+    padding: var(--space-2) var(--space-4);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+
+/* PANEL */
+
+.panel {
+    background: var(--color-surface);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+}
+
+.panel h3 {
+    margin-bottom: var(--space-4);
+    font-size: 16px;
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.panel-title .icon {
+    color: var(--color-accent);
+}
+
+.panel ul {
+    list-style: none;
+}
+
+.panel ul li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 14px;
+}
+
+.panel ul li:last-child {
+    border-bottom: none;
+}
+
+.panel ul li .icon {
+    color: var(--color-accent);
+}
+
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+}
+
+th, td {
+    padding: var(--space-4) var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+}
+
+tbody tr:hover {
+    background: var(--color-bg);
+}

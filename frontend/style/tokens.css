@@ -1,0 +1,62 @@
+:root {
+
+    /* Color — neutrals */
+    --color-bg: #fafafa;
+    --color-surface: #ffffff;
+    --color-text: #101828;
+    --color-text-muted: #667085;
+    --color-border: rgba(16, 24, 40, 0.08);
+    --color-border-strong: rgba(16, 24, 40, 0.16);
+
+    /* Color — accent (indigo/violet, not generic blue) */
+    --color-accent: #5b5cf0;
+    --color-accent-hover: #4a4bdb;
+    --color-accent-soft: #f0f0fe;
+    --color-accent-text: #4338ca;
+
+    /* Color — semantic */
+    --color-danger: #b91c1c;
+    --color-danger-soft: #fef2f2;
+
+    /* Color — category palette (stat cards, badges, tags) */
+    --color-purple: #5b5cf0;
+    --color-purple-soft: #f0f0fe;
+
+    --color-blue: #2f7dea;
+    --color-blue-soft: #eaf2ff;
+
+    --color-green: #17a34a;
+    --color-green-soft: #eafbf1;
+
+    --color-orange: #ea7a1f;
+    --color-orange-soft: #fef2e7;
+
+    /* Color — sidebar */
+    --sidebar-bg: #0b0d12;
+    --sidebar-bg-hover: #16181f;
+    --sidebar-text: #9aa0ad;
+    --sidebar-text-active: #ffffff;
+    --sidebar-border: rgba(255, 255, 255, 0.08);
+
+    /* Spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 999px;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+    --shadow-login: 0 16px 40px rgba(16, 24, 40, 0.14);
+
+    /* Typography */
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
