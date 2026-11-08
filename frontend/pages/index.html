@@ -56,6 +56,37 @@
             </form>
             <div class="auth-links">
                 <button class="link-btn" type="button" data-action="goStep" data-step-target="forgot">Forgot password?</button>
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="signup">New student? Create an account</button>
+            </div>
+        </section>
+
+        <!-- 2b. Student sign-up -->
+        <section class="auth-step hidden" data-step="signup">
+            <h2>Create a student account</h2>
+            <p class="lead">Teacher and admin accounts are created by the university.</p>
+            <form data-submit="signUp" novalidate>
+                <div class="field-group">
+                    <label for="signupName">Full name</label>
+                    <input class="field" id="signupName" autocomplete="name" required>
+                </div>
+                <div class="field-group">
+                    <label for="signupEmail">Email</label>
+                    <input class="field" type="email" id="signupEmail" autocomplete="email" placeholder="you@university.edu" required>
+                </div>
+                <div class="field-group">
+                    <label for="signupPassword">Password</label>
+                    <input class="field" type="password" id="signupPassword" minlength="10" autocomplete="new-password" required>
+                    <p class="field-hint">At least 10 characters.</p>
+                </div>
+                <div class="field-group">
+                    <label for="signupPassword2">Confirm password</label>
+                    <input class="field" type="password" id="signupPassword2" minlength="10" autocomplete="new-password" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Create account</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+            <div class="auth-links">
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="login">Already have an account? Sign in</button>
             </div>
         </section>
 

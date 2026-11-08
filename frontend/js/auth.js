@@ -154,6 +154,39 @@ registerActions({
         });
     },
 
+    /* Student self-registration. The role is never sent: the database trigger
+       makes every self-registered account a student. */
+    signUp: async (form) => {
+        const fullName = form.querySelector("#signupName").value.trim();
+        const email = form.querySelector("#signupEmail").value.trim();
+        const password = form.querySelector("#signupPassword").value;
+        if (!fullName || !email || !password) return setMessage("signup", "Fill in every field.");
+        if (password.length < 10) return setMessage("signup", "Use at least 10 characters for your password.");
+        if (password !== form.querySelector("#signupPassword2").value) return setMessage("signup", "The two passwords don't match.");
+
+        await withBusy(form.querySelector('button[type="submit"]'), async () => {
+            setMessage("signup", "");
+            const emailRedirectTo = window.location.href.split("?")[0].split("#")[0];
+            const { data, error } = await sb.auth.signUp({
+                email, password,
+                options: { data: { full_name: fullName }, emailRedirectTo }
+            });
+            if (error) {
+                if (/signups? not allowed|disabled/i.test(error.message)) {
+                    return setMessage("signup", "Sign-up is currently closed. Contact the university office.");
+                }
+                if (/already registered|already exists/i.test(error.message)) {
+                    return setMessage("signup", "An account with that email already exists. Sign in instead.");
+                }
+                return setMessage("signup", friendlyError(error));
+            }
+            form.reset();
+            if (data.session) return routeSignedIn();
+            // Email confirmation is on: the user must click the link first.
+            setMessage("signup", "Almost done! Check your email and click the confirmation link, then sign in.", true);
+        });
+    },
+
     verifyChallenge: async (form) => {
         const code = form.querySelector("#challengeCode").value.replace(/\s/g, "");
         if (!/^\d{6}$/.test(code)) return setMessage("challenge", "Enter the 6-digit code.");
