@@ -56,3 +56,4 @@ temp/
 *.map
 .cache/
 .parcel-cache/
+.claude/settings.local.json

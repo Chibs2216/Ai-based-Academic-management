@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>University Learning Portal</title>
+    <title>Sign in — UniBook</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,70 +12,187 @@
 
     <link rel="stylesheet" href="../style/tokens.css">
     <link rel="stylesheet" href="../style/base.css">
-    <link rel="stylesheet" href="../style/layout.css">
     <link rel="stylesheet" href="../style/components.css">
     <link rel="stylesheet" href="../style/pages.css">
-    <link rel="stylesheet" href="../style/dashboard.css">
     <link rel="stylesheet" href="../style/portal.css">
-    <link rel="stylesheet" href="../style/admin.css">
+    <link rel="stylesheet" href="../style/app.css">
 </head>
 
 <body>
 
-<svg xmlns="http://www.w3.org/2000/svg" class="visually-hidden" aria-hidden="true">
-    <defs>
-
-        <symbol id="icon-logo" viewBox="0 0 24 24">
-            <path d="M12 3L2 8L12 13L22 8L12 3Z"></path>
-            <path d="M6 10.5V15.5C6 15.5 8 18 12 18C16 18 18 15.5 18 15.5V10.5"></path>
-        </symbol>
-
-    </defs>
-</svg>
-
-
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="login-page">
+<main class="login-page">
 
     <div class="login-box">
 
         <div class="brand-mark">
             <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
         </div>
-
-        <h1>University Portal</h1>
+        <h1>UniBook</h1>
         <p class="subtitle">Student • Teacher • Admin</p>
 
-        <div class="field-group">
-            <label for="username">Username</label>
-            <input class="field" type="text" id="username" placeholder="Enter your username">
-        </div>
+        <div id="authBanner"></div>
 
-        <div class="field-group">
-            <label for="password">Password</label>
-            <input class="field" type="password" id="password" placeholder="Enter your password">
-        </div>
+        <!-- 1. Loading -->
+        <section class="auth-step" data-step="loading">
+            <div class="loading-state" role="status">Checking your session...</div>
+        </section>
 
-        <div class="field-group">
-            <label for="role">Role</label>
-            <select class="field" id="role">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
+        <!-- 2. Email + password -->
+        <section class="auth-step hidden" data-step="login">
+            <form data-submit="signIn" novalidate>
+                <div class="field-group">
+                    <label for="email">Email</label>
+                    <input class="field" type="email" id="email" autocomplete="username" placeholder="you@university.edu" required>
+                </div>
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <input class="field" type="password" id="password" autocomplete="current-password" required>
+                </div>
+                <label class="checkbox-row">
+                    <input type="checkbox" id="rememberDevice"> Remember this device
+                </label>
+                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+            <div class="auth-links">
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="forgot">Forgot password?</button>
+            </div>
+        </section>
 
-        <button class="btn btn-primary btn-block" data-action="login">Login</button>
+        <!-- 3. MFA challenge -->
+        <section class="auth-step hidden" data-step="challenge">
+            <h2>Two-step verification</h2>
+            <p class="lead">Open your authenticator app and enter the 6-digit code for UniBook.</p>
+            <form data-submit="verifyChallenge" novalidate>
+                <div class="field-group">
+                    <label for="challengeCode">Verification code</label>
+                    <input class="field otp-field" id="challengeCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required>
+                </div>
+                <p class="resend-timer" aria-live="off">New code in <span id="totpCountdown">30</span>s</p>
+                <button class="btn btn-primary btn-block" type="submit" style="margin-top: var(--space-3);">Verify</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+            <div class="auth-links">
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="recovery">Use a backup code</button>
+                <button class="link-btn" type="button" data-action="signOutHere">Sign in as someone else</button>
+            </div>
+        </section>
 
-        <p id="loginMessage"></p>
+        <!-- 4. Backup code -->
+        <section class="auth-step hidden" data-step="recovery">
+            <h2>Use a backup code</h2>
+            <p class="lead">Enter one of the backup codes you saved when you set up two-step verification. This turns verification off so you can set up your new phone.</p>
+            <form data-submit="redeemCode" novalidate>
+                <div class="field-group">
+                    <label for="backupCode">Backup code</label>
+                    <input class="field otp-field" id="backupCode" autocomplete="off" placeholder="ABCD-EFGH" maxlength="9" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Use code</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+            <div class="auth-links">
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="challenge">Back to code entry</button>
+            </div>
+            <p class="field-hint" style="margin-top: var(--space-4);">No backup codes? Ask an administrator to reset your two-step verification.</p>
+        </section>
+
+        <!-- 5. Enroll MFA (required by the university) -->
+        <section class="auth-step hidden" data-step="enroll">
+            <h2>Set up two-step verification</h2>
+            <p class="lead">Your university requires a code from your phone each time you sign in. This takes about a minute.</p>
+            <div id="enrollRoot"></div>
+        </section>
+
+        <!-- 6. Forgot password -->
+        <section class="auth-step hidden" data-step="forgot">
+            <h2>Reset your password</h2>
+            <p class="lead">Enter your university email and we'll send you a link to choose a new password.</p>
+            <form data-submit="sendReset" novalidate>
+                <div class="field-group">
+                    <label for="forgotEmail">Email</label>
+                    <input class="field" type="email" id="forgotEmail" autocomplete="username" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Send reset link</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+            <div class="auth-links">
+                <button class="link-btn" type="button" data-action="goStep" data-step-target="login">Back to sign in</button>
+            </div>
+        </section>
+
+        <!-- 7. Choose a new password (from the email link) -->
+        <section class="auth-step hidden" data-step="reset">
+            <h2>Choose a new password</h2>
+            <form data-submit="saveNewPassword" novalidate>
+                <div class="field-group">
+                    <label for="resetPassword">New password</label>
+                    <input class="field" type="password" id="resetPassword" minlength="10" autocomplete="new-password" required>
+                    <p class="field-hint">At least 10 characters.</p>
+                </div>
+                <div class="field-group">
+                    <label for="resetPassword2">Confirm new password</label>
+                    <input class="field" type="password" id="resetPassword2" minlength="10" autocomplete="new-password" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Save password</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <!-- 8. First sign-in -->
+        <section class="auth-step hidden" data-step="onboarding">
+            <h2>Welcome to UniBook</h2>
+            <p class="lead">Check your details before you start.</p>
+            <form data-submit="finishOnboarding" novalidate>
+                <div class="field-group">
+                    <label for="onboardName">Full name</label>
+                    <input class="field" id="onboardName" autocomplete="name" required>
+                </div>
+                <div class="field-group">
+                    <label for="onboardPhone">Phone (optional)</label>
+                    <input class="field" id="onboardPhone" type="tel" autocomplete="tel" placeholder="+8801...">
+                </div>
+                <div class="field-group">
+                    <label for="onboardLocale">Language</label>
+                    <select class="field" id="onboardLocale">
+                        <option value="en">English</option>
+                        <option value="bn">বাংলা (Bangla)</option>
+                    </select>
+                </div>
+                <label class="checkbox-row" id="onboardMfaRow">
+                    <input type="checkbox" id="onboardMfa" checked> Set up two-step verification now (recommended)
+                </label>
+                <button class="btn btn-primary btn-block" type="submit">Continue</button>
+                <p class="auth-message" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <!-- 9. Locked / inactive -->
+        <section class="auth-step hidden" data-step="locked">
+            <div class="banner banner--danger" role="alert">
+                <svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                <span id="lockedText">Your account is locked.</span>
+            </div>
+            <p class="lead">Contact the university IT office or your department administrator to restore access. Have your student or staff ID ready.</p>
+            <button class="btn btn-ghost btn-block" type="button" data-action="signOutHere">Back to sign in</button>
+        </section>
 
     </div>
 
-</div>
+</main>
 
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/icons.js"></script>
 <script src="../js/shared.js"></script>
-<script src="../js/login.js"></script>
+<script src="../js/shared/core.js"></script>
+<script src="../js/shared/navigation.js"></script>
+<script src="../js/shared/auth-guard.js"></script>
+<script src="../js/shared/notifications.js"></script>
+<script src="../js/shared/account-settings.js"></script>
+<script src="../js/shared/charts.js"></script>
+<script src="../js/auth.js"></script>
 
 </body>
 </html>
