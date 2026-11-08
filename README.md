@@ -37,7 +37,7 @@ Ai-based-Academic-management/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/tanviralamtusar/Ai-based-Academic-management.git
+   git clone https://github.com/Chibs2216/Ai-based-Academic-management.git
    ```
 
 2. **Navigate to the project directory**
