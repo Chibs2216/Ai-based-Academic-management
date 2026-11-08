@@ -1,0 +1,85 @@
+/* Misc: pills, key-value lists, material viewer, badges */
+
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.kv {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-2) var(--space-4);
+    font-size: 14px;
+}
+
+.kv dt {
+    color: var(--color-text-muted);
+}
+
+.feedback-box {
+    margin-top: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+}
+
+.material-viewer {
+    margin-top: var(--space-3);
+}
+
+.material-viewer iframe,
+.material-viewer video {
+    width: 100%;
+    height: 520px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+}
+
+.material-text {
+    white-space: pre-wrap;
+    font-size: 14.5px;
+    line-height: 1.7;
+}
+
+.tag--muted {
+    background: var(--color-border);
+    color: var(--color-text-muted);
+}
+
+.badge--danger {
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+}
+
+.badge--warning {
+    background: var(--color-orange-soft);
+    color: #9a4a0c;
+}
+
+.attendance-grid select.field {
+    padding: 6px 8px;
+    min-width: 110px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .login-box {
+        padding: var(--space-5) var(--space-4);
+    }
+
+    .code-list {
+        grid-template-columns: 1fr;
+    }
+
+    .material-viewer iframe,
+    .material-viewer video {
+        height: 380px;
+    }
+}

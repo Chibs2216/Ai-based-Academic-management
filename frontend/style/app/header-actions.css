@@ -1,0 +1,66 @@
+/* Header actions and notification bell */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.icon-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+.icon-btn:hover {
+    border-color: var(--color-border-strong);
+}
+
+.icon-btn .count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    padding: 0 5px;
+    border-radius: var(--radius-full);
+    background: var(--color-danger);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
+
+.btn-sm-icon {
+    padding: 6px 8px;
+}
+
+.btn-danger {
+    background: var(--color-danger);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #991b1b;
+}
+
+.btn:disabled,
+.btn[aria-busy="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.link-btn {
+    color: var(--color-accent-text);
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}

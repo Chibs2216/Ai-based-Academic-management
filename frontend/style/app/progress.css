@@ -1,0 +1,9 @@
+/* Upload progress bar */
+
+.upload-progress {
+    margin-top: var(--space-3);
+}
+
+.upload-progress .progress-bar div {
+    transition: width 0.2s ease;
+}
